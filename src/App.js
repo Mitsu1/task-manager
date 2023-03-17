@@ -1,22 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import GetData from './services/api'; 
 
 function App() {
   return (
     <div className="App">
+      <GetData />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Ya implementé axios y redux state, funcionan por separado. El initialState está creado manualmente, el siguiente paso es: almacenar los registros de la bd en el store y dejar el initialState = []</p>
       </header>
     </div>
   );
