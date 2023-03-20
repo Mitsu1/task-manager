@@ -3,25 +3,26 @@ import { createSlice } from '@reduxjs/toolkit';
 export const taskSlice = createSlice({
 	name: 'tasks',
 	initialState: [
-        {id: "1",
-        name: "Mi primer Redux State",
-        description: "Este es el initialState",
-        status: "1",
-        tag: "frontend"}],
+    {id: "1",
+    name: "Mi primer Redux State",
+    description: "Este es el initialState",
+    status: 0,
+    tag: "frontend"}],
 	reducers: {
-		addTask: (state, action) => {
+		createTask: (state, action) => {
 			const task = {
-				id: new Date(),
-				title: action.payload.title,
-				completed: false,
+				id: 20,
+				name: action.payload.name,
+				description: action.payload.description,
+				status: 0,
+				tag: action.payload.tag,
 			};
 			state.push(task);
 		},
-
 	},
 });
 
 
-export const { addTask } = taskSlice.actions;
+export const { createTask } = taskSlice.actions;
 
 export default taskSlice.reducer;
