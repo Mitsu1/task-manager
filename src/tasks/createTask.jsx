@@ -6,9 +6,11 @@ export default function CreateTask() {
   const dispatch = useDispatch();
 
   const [task, setTask] = useState({
+    id:0,
     name: "",
     description: "",
-    tag: ""
+    tag: "",
+    status: 0
   });
 
   const handleChange = (event) => {
@@ -19,7 +21,7 @@ export default function CreateTask() {
   };
 
   return (
-    <div className='App'>
+    <div>
       <form>
         <input type="text" name="name" title='Nombre' placeholder='Nombre de la tarea' onChange={handleChange} />
         <input type="text" name="description" title='Descripción' placeholder='Descripción' onChange={handleChange} />

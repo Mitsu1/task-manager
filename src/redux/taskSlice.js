@@ -10,14 +10,7 @@ export const taskSlice = createSlice({
       })
     },
 		createTask: (state, action) => {
-			const task = {
-				id: action.payload.id+1,
-				name: action.payload.name,
-				description: action.payload.description,
-				status: 0,
-				tag: action.payload.tag,
-			};
-			state.push(task);
+			state.push(action.payload);
 		}
 	},
 });

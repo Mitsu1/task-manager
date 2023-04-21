@@ -1,25 +1,30 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { getTasks } from "../redux/taskSlice";
+import axios from 'axios'
+import { useEffect } from 'react'
+import { getTasks } from "../redux/taskSlice"
+import { useSelector, useDispatch } from "react-redux"
 
 export default function GetTasks() {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const task = async () => {
       try {
-        const res = await axios.get(`http://localhost/TaskManager/tasks.php`);
-        return dispatch(getTasks(res.data.body));
+        const res = await axios.get(`http://localhost/TaskManager/tasks.php`)
+        dispatch(getTasks(res.data.body))
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
-    task();
+    }
+    task()
   }, [dispatch])
 
-  const tasks = useSelector((state) => state.tasks);
+  let tasks = useSelector((state) => state.tasks)
+  
+  tasks = tasks.filter((task, index, tasks) => {
+    return tasks.findIndex(t => t.id === task.id) === index;
+  });
+  
   return (
     <div>
       <table>
@@ -33,13 +38,13 @@ export default function GetTasks() {
         </thead>
         <tbody>
           {
-            tasks?.map((data) => {
+            tasks?.map((task) => {
               return (
-                <tr key={data.id}>
-                  <td>{`${data.name}`}</td>
-                  <td>{`${data.description}`}</td>
-                  <td>{`${data.status}`}</td>
-                  <td>{`${data.tag}`}</td>
+                <tr key={task.id}>
+                  <td>{`${task.name}`}</td>
+                  <td>{`${task.description}`}</td>
+                  <td>{`${task.status}`}</td>
+                  <td>{`${task.tag}`}</td>
                 </tr>
               )
             })
